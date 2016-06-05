@@ -138,6 +138,16 @@ $('.addgroup form, .editgroup form')
 })
 ;
 
+var $toggle  = $('.ui.toggle.button');
+      $toggle
+      .state({
+        text: {
+          inactive : 'Acknowledge',
+          active   : 'Acknowledged'
+        }
+      })
+      ;
+
 $('.ui.progress').progress();
 
 $('.ui.showgroupcreate').click(function(){
