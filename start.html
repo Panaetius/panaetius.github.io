@@ -62,7 +62,7 @@
         ;
       });
 
-      $('.addserver .form')
+      $('.addserver .form, .editserver .form')
       .form({
         fields: {
           icon: {
@@ -147,17 +147,38 @@ $('.ui.showgroupcreate').click(function(){
   ;
 });
 
-$('.ui.button.addserver, .ui.button.openeditserver').click(function(){
+$('.ui.button.addserver').click(function(){
   $('form').form('clear');
   $('.ui.modal.addserver')
   .modal('show')
   ;
 });
 
-$('.ui.openeditgroup').click(function(event){
+$('.item.openeditserver').click(function(){
+  $('form').form('clear');
+  $('.ui.modal.editserver')
+  .modal('show')
+  ;
+});
+
+$('.item.opendeleteserver').click(function(){
+  $('form').form('clear');
+  $('.ui.modal.confirmserverdelete')
+  .modal('show')
+  ;
+});
+
+$('.item.openeditgroup').click(function(event){
   event.stopPropagation();
   $('form').form('clear')
   $('.ui.modal.editgroup')
+  .modal('show')
+  ;
+});
+$('.item.opendeletegroup').click(function(event){
+  event.stopPropagation();
+  $('form').form('clear')
+  $('.ui.modal.confirmgroupdelete')
   .modal('show')
   ;
 });
@@ -223,6 +244,10 @@ $('.ui.dropdown')
 .dropdown()
 ;
 
+$('.ui.dropdown')
+.click(function(){
+  event.stopPropagation();
+});
 
 $('.ui.button.createserver').click(function(){
   $('.addserver form').form("validate form");
@@ -231,6 +256,18 @@ $('.ui.button.createserver').click(function(){
   }
   $('.ui.modal.addserver')
   .modal('hide');
+
+  $('.ui.modal.done').modal('show');
+});
+
+$('.ui.button.editserver').click(function(){
+  $('.editserver form').form("validate form");
+  if ( !$('.editserver form').form('is valid') ) {
+    return;
+  }
+  $('.ui.modal.editserver')
+  .modal('hide');
+  
   $('.ui.modal.done').modal('show');
 });
 
@@ -245,7 +282,7 @@ $('.ui.button.showdetails').click(function(){
 <body>
   <div class="ui top attached pointing menu">
     <div class="ui container">
-      <a href="#" class="header item">
+      <a href="start.html" class="header item">
         <img class="logo" src="Logo.png">
       </a>
       <a href="start.html" class="middle aligned active item">
@@ -265,11 +302,31 @@ $('.ui.button.showdetails').click(function(){
   </div>
   <div class="ui bottom attached segment">
     <div class="ui monitoringgroups">
-      <div class="ui button green showgroupcreate" style="margin-top:10px;"><i class="add square icon" ></i>Add Monitoring Group</div>
+      <div class="ui grid">
+        <div class="four wide column">
+          <div class="ui button green showgroupcreate" style="margin-top:10px;"><i class="add square icon" ></i>Add Monitoring Group</div>
+        </div>
+        <div class="eight wide column"> </div>
+        <div class="four wide right aligned column">
+          <div class="ui right floated search">
+            <div class="ui icon input">
+              <input class="prompt" type="text" placeholder="Search Server...">
+              <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+          </div>
+        </div>
+      </div>
       <div class="ui clearing top attached segment" style="cursor:pointer;">
         <div class="ui left floated header">Migros 
-          <div class="mini ui icon button green openeditgroup" title="Edit Monitoring Group">
-            <i class="write icon"></i>
+          <div class="ui icon buttons">
+            <div class="ui green top right pointing dropdown button">
+              <i class="settings icon"></i>
+              <div class="menu">
+                <div class="openeditgroup item"><i class="green edit icon"></i> Edit</div>
+                <div class="opendeletegroup item"><i class="red delete icon"></i> Remove</div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="ui right floated header">
@@ -288,8 +345,14 @@ $('.ui.button.showdetails').click(function(){
               <i class="right floated huge disk outline icon"></i>
               <div class="ui small header" style="whitespace:nowrap;">
                 Windows 2008 Server
-                <div class="mini ui icon button green openeditserver" title="Edit Server">
-                  <i class="write icon"></i>
+                <div class="ui icon buttons">
+                  <div class="ui mini green top right pointing dropdown button">
+                    <i class="mini settings icon"></i>
+                    <div class="menu">
+                      <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                      <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="meta">
@@ -329,8 +392,14 @@ $('.ui.button.showdetails').click(function(){
               <i class="right floated huge desktop outline icon"></i>
               <div class="ui small header">
                 Computer of the Boss
-                <div class="mini ui icon button green openeditserver" title="Edit Server">
-                  <i class="write icon"></i>
+                <div class="ui icon buttons">
+                  <div class="ui green top right pointing dropdown button">
+                    <i class="mini settings icon"></i>
+                    <div class="menu">
+                      <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                      <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="meta">
@@ -370,8 +439,14 @@ $('.ui.button.showdetails').click(function(){
               <i class="right floated huge database outline icon"></i>
               <div class="ui small header">
                 Old Product Database
-                <div class="mini ui icon button green openeditserver" title="Edit Server">
-                  <i class="write icon"></i>
+                <div class="ui icon buttons">
+                  <div class="ui green top right pointing dropdown button">
+                    <i class="mini settings icon"></i>
+                    <div class="menu">
+                      <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                      <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="meta">
@@ -411,8 +486,14 @@ $('.ui.button.showdetails').click(function(){
               <i class="right floated huge disk outline icon"></i>
               <div class="ui small header">
                 Windows 2008 File Server
-                <div class="mini ui icon button green openeditserver" title="Edit Server">
-                  <i class="write icon"></i>
+                <div class="ui icon buttons">
+                  <div class="ui green top right pointing dropdown button">
+                    <i class="mini settings icon"></i>
+                    <div class="menu">
+                      <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                      <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="meta">
@@ -452,8 +533,14 @@ $('.ui.button.showdetails').click(function(){
               <i class="right floated huge desktop outline icon"></i>
               <div class="ui small header">
                 Windows 2008 File Server
-                <div class="mini ui icon button green openeditserver" title="Edit Server">
-                  <i class="write icon"></i>
+                <div class="ui icon buttons">
+                  <div class="ui green top right pointing dropdown button">
+                    <i class="mini settings icon"></i>
+                    <div class="menu">
+                      <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                      <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="meta">
@@ -492,8 +579,14 @@ $('.ui.button.showdetails').click(function(){
             <i class="right floated huge database outline icon"></i>
             <div class="ui small header">
               Windows 2008 File Server
-              <div class="mini ui icon button green openeditserver" title="Edit Server">
-                <i class="write icon"></i>
+              <div class="ui icon buttons">
+                <div class="ui green top right pointing dropdown button">
+                  <i class="mini settings icon"></i>
+                  <div class="menu">
+                    <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                    <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="meta">
@@ -532,8 +625,14 @@ $('.ui.button.showdetails').click(function(){
           <i class="right floated huge disk outline icon"></i>
           <div class="ui small header">
             Windows 2008 File Server
-            <div class="mini ui icon button green openeditserver" title="Edit Server">
-              <i class="write icon"></i>
+            <div class="ui icon buttons">
+              <div class="ui green top right pointing dropdown button">
+                <i class="mini settings icon"></i>
+                <div class="menu">
+                  <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                  <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="meta">
@@ -590,8 +689,14 @@ $('.ui.button.showdetails').click(function(){
   <!-- --------------------------------- Next ----------------------------------- -->
   <div class="ui clearing top attached segment" style="background:lightcoral;cursor:pointer;">
     <div class="ui left floated header">SBB 
-      <div class="mini ui icon button green openeditgroup" title="Edit Monitoring Group">
-        <i class="write icon"></i>
+      <div class="ui icon buttons">
+        <div class="ui green top right pointing dropdown button">
+          <i class="settings icon"></i>
+          <div class="menu">
+            <div class="openeditgroup item"><i class="green edit icon"></i> Edit</div>
+            <div class="opendeletegroup item"><i class="red delete icon"></i> Remove</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="ui right floated header">
@@ -610,8 +715,14 @@ $('.ui.button.showdetails').click(function(){
           <i class="right floated huge disk outline icon"></i>
           <div class="ui small header">
             Windows 2008 File Server
-            <div class="mini ui icon button green openeditserver" title="Edit Server">
-              <i class="write icon"></i>
+            <div class="ui icon buttons">
+              <div class="ui green top right pointing dropdown button">
+                <i class="mini settings icon"></i>
+                <div class="menu">
+                  <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                  <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="meta">
@@ -651,8 +762,14 @@ $('.ui.button.showdetails').click(function(){
           <i class="right floated huge desktop outline icon"></i>
           <div class="ui small header">
             Windows 2008 File Server
-            <div class="mini ui icon button green openeditserver" title="Edit Server">
-              <i class="write icon"></i>
+            <div class="ui icon buttons">
+              <div class="ui green top right pointing dropdown button">
+                <i class="mini settings icon"></i>
+                <div class="menu">
+                  <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                  <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="meta">
@@ -692,8 +809,14 @@ $('.ui.button.showdetails').click(function(){
           <i class="right floated huge database outline icon"></i>
           <div class="ui small header">
             Windows 2008 File Server
-            <div class="mini ui icon button green openeditserver" title="Edit Server">
-              <i class="write icon"></i>
+            <div class="ui icon buttons">
+              <div class="ui green top right pointing dropdown button">
+                <i class="mini settings icon"></i>
+                <div class="menu">
+                  <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                  <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="meta">
@@ -733,8 +856,14 @@ $('.ui.button.showdetails').click(function(){
           <i class="right floated huge disk outline icon"></i>
           <div class="ui small header">
             Windows 2008 File Server
-            <div class="mini ui icon button green openeditserver" title="Edit Server">
-              <i class="write icon"></i>
+            <div class="ui icon buttons">
+              <div class="ui green top right pointing dropdown button">
+                <i class="mini settings icon"></i>
+                <div class="menu">
+                  <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                  <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="meta">
@@ -774,8 +903,14 @@ $('.ui.button.showdetails').click(function(){
           <i class="right floated huge desktop outline icon"></i>
           <div class="ui small header">
             Windows 2008 File Server
-            <div class="mini ui icon button green openeditserver" title="Edit Server">
-              <i class="write icon"></i>
+            <div class="ui icon buttons">
+              <div class="ui green top right pointing dropdown button">
+                <i class="mini settings icon"></i>
+                <div class="menu">
+                  <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                  <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="meta">
@@ -815,8 +950,14 @@ $('.ui.button.showdetails').click(function(){
           <i class="right floated huge database outline icon"></i>
           <div class="ui small header">
             Windows 2008 File Server
-            <div class="mini ui icon button green openeditserver" title="Edit Server">
-              <i class="write icon"></i>
+            <div class="ui icon buttons">
+              <div class="ui green top right pointing dropdown button">
+                <i class="mini settings icon"></i>
+                <div class="menu">
+                  <div class="openeditserver item"><i class="green edit icon"></i> Edit</div>
+                  <div class="opendeleteserver item"><i class="red delete icon"></i> Remove</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="meta">
@@ -1034,6 +1175,101 @@ $('.ui.button.showdetails').click(function(){
     </div>
   </div>
 </div>
+<div class="ui modal editserver">
+  <i class="close icon"></i>
+  <div class="header">
+    Edit Server
+  </div>
+  <div class="image content">
+    <div class="image">
+      <i class="massive icons">
+        <i class="desktop icon"></i>
+        <i class="corner green write icon"></i>
+      </i>
+    </div>
+    <div class="description">
+      <form class="ui form">
+        <div class="field">
+          <label>Icon*</label>
+          <div class="ui floating labeled icon white dropdown button"  style="background:white;border-width:1px;border-color:gray;border-style:solid;">
+            <input type="hidden" name="icon">
+            <i class="add circle icon"></i>
+            <span class="white text">Select Icon</span>
+            <div class="menu">
+              <div class="item">
+                <i class="big desktop icon"></i>
+              </div>
+              <div class="item">
+                <i class="big database icon"></i>
+              </div>
+              <div class="item">
+                <i class="big disk outline icon"></i>
+              </div>
+              <div class="item">
+                <i class="big laptop icon"></i>
+              </div>
+              <div class="item">
+                <i class="big tablet icon"></i>
+              </div>
+              <div class="item">
+                <i class="big plug icon"></i>
+              </div>
+              <div class="item">
+                <i class="big rss icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Server Name*</label>
+          <input type="text" name="name" id="servername" placeholder="Server Name" text="Server123">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <input type="text" name="server-description" id="serverdescription" placeholder="Description" text="bla">
+        </div>
+        <div class="field">
+          <label>IP*</label>
+          <input type="text" name="ip" id="serverip" placeholder="IP (e.g. 127.0.0.1)" text="127.0.0.1">
+        </div>
+        <div class="field">
+          <label>Port*</label>
+          <input type="text" name="port" id="serverport" placeholder="Port (e.g. 8080)" text="1234">
+        </div>
+        <div class="field">
+          <label>Check Interval (Minutes)*</label>
+          <div class="ui selection dropdown">
+            <input type="hidden" name="interval" id="serverinterval" placeholder="Check Interval (Minutes)">
+            <i class="dropdown icon"></i>
+            <div class="default text">Check Interval (Minutes)</div>
+            <div class="menu">
+              <div class="item" data-value="1">1 Minute</div>
+              <div class="item" data-value="2">2 Minutes</div>
+              <div class="item" data-value="5">5 Minutes</div>
+              <div class="item" data-value="15">15 Minutes</div>
+              <div class="item" data-value="30">30 Minutes</div>
+              <div class="item" data-value="60">60 Minutes</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui error message"></div>
+      </form>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="two fluid ui buttons">
+      <div class="ui red button cancel">
+        <i class="remove icon"></i>
+        Cancel
+      </div>
+      <div class="ui green button editserver">          
+        <i class="checkmark icon"></i>
+        Create Server
+      </div>
+    </div>
+  </div>
+</div>
 <div class="ui modal serverdetails">
   <i class="close icon"></i>
   <div class="header">
@@ -1243,6 +1479,42 @@ $('.ui.button.showdetails').click(function(){
       <div class="ui blue button cancel">
         <i class="accept icon"></i>
         Ok
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui modal confirmgroupdelete">
+  <div class="header">Are you sure</div>
+  <div class="content">
+    Do you really want to delete group XYZ?
+  </div>
+  <div class="actions">
+    <div class="two fluid ui buttons">      
+      <div class="ui red button cancel">
+        <i class="cancel icon"></i>
+        No
+      </div>
+      <div class="ui green button cancel">
+        <i class="accept icon"></i>
+        Yes
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui modal confirmserverdelete">
+  <div class="header">Are you sure</div>
+  <div class="content">
+    Do you really want to delete server XYZ?
+  </div>
+  <div class="actions">
+    <div class="two fluid ui buttons">      
+      <div class="ui red button cancel">
+        <i class="cancel icon"></i>
+        No
+      </div>
+      <div class="ui green button cancel">
+        <i class="accept icon"></i>
+        Yes
       </div>
     </div>
   </div>
