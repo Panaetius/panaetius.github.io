@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="CoffeeCup HTML Editor (www.coffeecup.com)">
+  <meta name="dcterms.created" content="So, 22 Mai 2016 09:48:39 GMT">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <title>Big Brother Monitoring</title>
+
+  <link rel="stylesheet" type="text/css" href="semantic/out/semantic.min.css">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" media="screen"
+  href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="semantic/out/semantic.min.js"></script>
+  <script src="api.js"></script>
+  <script src="jquery.tablesort.js"></script>
+
+  <script type="text/javascript"
+  src="bootstrap.js">
+  </script>
+  <script type="text/javascript"
+  src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+  </script>
+  <script type="text/javascript"
+  src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.en-US.js">
+  </script>
+
+    <!--[if IE]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    body {
+      background-color: #FFFFFF;
+    }
+    .ui.menu{
+      height:100px;
+    }
+    .ui.menu .item img.logo {
+      height: 100px;
+      width: 75px;
+    }
+    .main.container {
+      margin-top: 7em;
+    }
+    .wireframe {
+      margin-top: 2em;
+    }
+    .ui.footer.segment {
+      margin: 5em 0em 0em;
+      padding: 5em 0em;
+    }
+    .ui.header>.icon {
+      font-size:1em;
+    }
+    .ui.header .icon:only-child {
+      margin:3px;
+    }
+    .ui.label.problemservers{      
+      top: 1.5em;
+      left: 6.5em;
+    }
+    </style>
+
+
+    <script type="text/javascript">
+    $(document)
+    .ready(function() {
+      $('.ui.progress').progress();
+      $('.ui.dropdown').dropdown();
+      $('#datetimepicker1').datetimepicker({
+        language: 'en-US'
+      });
+      $('#datetimepicker2').datetimepicker({
+        language: 'en-US'
+      });
+
+      $('.createreport.button').click(function(){
+        event.stopPropagation();
+        $('.ui.dimmer').addClass('active');
+        $('.ui.report.segment').show();
+        setTimeout(function(){$('.ui.dimmer').removeClass('active');}, 5000);
+      });
+    });
+    $( window ).load(function() { 
+      $('.ui.report.segment').hide();
+    });
+    </script>
+  </head>
+  <body>
+    <div class="ui top attached pointing menu">
+      <div class="ui container">
+        <a href="#" class="header item">
+          <img class="logo" src="Logo.png">
+        </a>
+        <a href="start.html" class="middle aligned item">
+          <i class="grey huge home icon"></i> Overview
+          <div class="floating ui red label problemservers">2</div>
+        </a>
+        <a href="incidents.html" class="middle aligned item">
+          <i class="grey huge warning circle icon"></i> Incidents
+        </a>
+        <a href="reports.html" class="middle aligned active item">
+          <i class=" huge blue area chart icon"></i> Reports
+        </a>
+        <a href="settings.html" class="middle aligned item">
+          <i class="grey huge setting icon"></i> Settings
+        </a>
+      </div>
+    </div>
+    <div class="center aligned  segments">
+      <div class="ui bottom attached segment">
+        <div class="ui clearing  segment" style="max-width:800px;margin:0 auto;">
+          <div class="ui form large">
+            <div class="field">
+              <label>Report Type</label>
+              <div class="ui selection dropdown">
+                <input type="hidden" name="reporttype">
+                <i class="dropdown icon"></i>
+                <div class="default text">Report Type</div>
+                <div class="menu">
+                  <div class="item" data-value="1">CPU History</div>
+                  <div class="item" data-value="0">RAM History</div>
+                  <div class="item" data-value="0">Harddisk History</div>
+                  <div class="item" data-value="0">Network History</div>
+                  <div class="item" data-value="0">Incident Overview</div>
+                  <div class="item" data-value="0">Downtime Summary</div>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Server</label>
+              <div class="ui floating labeled icon  dropdown button">
+                <i class="dropdown icon"></i>
+                <span class="text">Server</span>
+                <div class="menu">
+                  <div class="item">
+                    <i class="dropdown icon"></i>
+                    <span class="text">Migros</span>
+                    <div class="right menu">
+                      <div class="item">Server 1</div>
+                      <div class="item">Server 3</div>
+                      <div class="item">Server 456</div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <i class="dropdown icon"></i>
+                    <span class="text">SBB</span>
+                    <div class="right menu">
+                      <div class="item">Server A</div>
+                      <div class="item">Server C</div>
+                      <div class="item">Server X</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="two fields">
+              <div class="field">
+                <label>From</label>
+                <div id="datetimepicker1" class="input-append date ui input" sty>
+                  <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+                  <span class="add-on ui button" style="height:27px;">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                    </i>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <label>To</label>
+                <div id="datetimepicker2" class="input-append date ui input" sty>
+                  <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+                  <span class="add-on ui button" style="height:27px;">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                    </i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <button class="ui blue right floated createreport button">Generate Report</button>
+          </div>
+        </div>
+      </div>
+      <div class="ui report segment">
+        <div class="ui active dimmer">
+          <div class="ui text loader">Loading</div>
+        </div>
+        <img src="cpugraph.png" width="1024" style="margin:0 auto;"/>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>
