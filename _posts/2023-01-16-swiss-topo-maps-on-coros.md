@@ -18,6 +18,8 @@ that got custom maps running on their watch.
 
 So I decided to reverse-engineer the Coros and try and get the SwissTopo maps onto my watch. And write it down to save others the trouble.
 
+If you're just interested in the map files and not the technical details, you can skip to then end.
+
 ## Reverse Engineering the Map Format
 
 Maps for Coros watches can be easily downloaded by region on the [Coros download page](https://www.coros.com/maps). When downloading,
