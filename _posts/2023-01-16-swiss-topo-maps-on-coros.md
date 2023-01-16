@@ -241,7 +241,7 @@ to my maps using a larger block size in the Garmin `.img` files, which internall
 ## The Maps
 
 You can [download the maps here](https://polybox.ethz.ch/index.php/s/rB2rbNcRwRXIroC). The maps are provided as is, without warranty of any kind,
-express or implied. Use at your own risk.
+express or implied. Use at your own risk. I do not guarantee the correctness of the maps, always bring a physical map and stay safe!
 
 I did soft-lock my watch twice while playing around with creating maps and had to factory reset it to get it working again. You have been warned!
 
