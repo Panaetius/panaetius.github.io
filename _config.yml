@@ -29,5 +29,8 @@ comments:
   disqus_shortname: "panaetius-github-io"    # see https://disqus.com/
 #  isso_domain: ""         # see https://posativ.org/isso/
 
+sass:
+  sass_dir: _sass
+
 plugins:
  - jekyll-feed
